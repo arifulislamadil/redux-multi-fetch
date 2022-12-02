@@ -16,12 +16,31 @@ export const fetchPost = createAsyncThunk( "posts/fetchPost", async () => {
 const postSlice =createSlice({
     name: "post",
     name: "user",
+    count: "count",
     initialState:{
         posts: [],
         users:[],
-        loading: false
+        loading: false,
+        count: 0,
+    },
+    reducers:{
+        increment:(state)=>{
+            state.count +=1;
+        },
+        decrement:(state)=>{
+            state.count -=1;
+        },
+        reset:(state)=>{
+            state.count =0;
+        },
+        incrementByNumber:(state,action)=>{
+             if(state.count % 2 == 0){
+                state.count *= action.payload;
+             }
+        },
     },
     extraReducers:{
+       
         [fetchPost.pending]: (state,action)=>{
             state.loading = true;
         },
@@ -46,5 +65,7 @@ const postSlice =createSlice({
         },
     }
 })
+
+export const {increment,decrement,reset,incrementByNumber}=postSlice.actions
 
 export default postSlice.reducer;
