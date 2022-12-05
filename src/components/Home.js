@@ -1,11 +1,16 @@
 import React from 'react';
+import Paginate from './Paginate';
 import Post from './Post';
 
 const Home = () => {
 
     
     return (
-        <Post/>
+        <div>
+            <Post/>
+        </div>
+
+        
 
     )
 };
